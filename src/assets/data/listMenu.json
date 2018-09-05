@@ -1,0 +1,36 @@
+[
+    {
+        "name": "Tableau de Bord",
+        "categorie": [
+            {
+                "name": "Activités",
+                "page": "Activite page"
+            },
+            {
+                "name": "Derniers Devis",
+                "page": "LatestDevis page"
+            },
+            {
+                "name": "Derniéres Commande",
+                "page": "LatestCommands page"
+            },
+            {
+                "name": "Dernières Facture",
+                "page": "LatestFacture page"
+            }
+        ]
+    },
+    {
+        "name": "Ticket / Réclamation",
+        "categorie": [
+            {
+                "name": "Mes demandes",
+                "page": "Ticket page"
+            },
+            {
+                "name": "Mes demandes archivés",
+                "page": "Archive page"
+            }
+        ]
+    }
+]

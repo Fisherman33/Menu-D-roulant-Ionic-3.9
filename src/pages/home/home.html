@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Menu déroulant
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding  >
+  <h3>Exercive menu déroulant</h3>
+  <ion-item-group *ngFor="let M of dataD">
+    <button (click)="clickM()" ion-button clear>
+      {{M.name}}
+    </button>
+    <div id="menu" >
+      <ion-item *ngFor="let C of M.categorie">{{C.name}}</ion-item>
+    </div>
+  </ion-item-group>
+</ion-content>

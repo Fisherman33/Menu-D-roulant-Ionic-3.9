@@ -1,0 +1,7 @@
+{
+  "name": "menuDeroulant",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
