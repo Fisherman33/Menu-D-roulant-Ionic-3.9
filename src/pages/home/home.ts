@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, App, NavParams, MenuController } from 'ionic-angular';
 
 /* Service Provider */
 import { DataServiceProvider } from './../../providers/data-service/data-service';
@@ -14,26 +14,24 @@ export class HomePage {
   public dataC: any;
   public style: any;
 
-  constructor(public navCtrl: NavController, public dataService: DataServiceProvider, public params: NavParams) {
-
+  constructor(public app: App, public menu: MenuController, public navCtrl: NavController, public dataService: DataServiceProvider, public params: NavParams) {
+    menu.enable(true)
   }
   ionViewDidLoad() {
-    this.menu();
-    
+    this.menus();
   }
   /* fonction qui récupére la data du service provider */
-  menu() {
+  menus() {
     this.dataService.getData(this.dataM).then((data) => {
       this.dataD = data
     });
   }
-  clickM() {
-    let clicks = document.getElementById("menu");
-    if (clicks.style.display === "none") {
-      clicks.style.display = "block";
+  clickM(M) {
+    if (M.open === true) {
+      M.open = false;
     }
     else {
-      clicks.style.display = "none";
+     M.open = true;
     }
   }
 }

@@ -56,37 +56,40 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 /* Service Provider */
 
 var HomePage = /** @class */ (function () {
-    function HomePage(navCtrl, dataService, params) {
+    function HomePage(app, menu, navCtrl, dataService, params) {
+        this.app = app;
+        this.menu = menu;
         this.navCtrl = navCtrl;
         this.dataService = dataService;
         this.params = params;
+        menu.enable(true);
     }
     HomePage.prototype.ionViewDidLoad = function () {
-        this.menu();
+        this.menus();
     };
     /* fonction qui récupére la data du service provider */
-    HomePage.prototype.menu = function () {
+    HomePage.prototype.menus = function () {
         var _this = this;
         this.dataService.getData(this.dataM).then(function (data) {
             _this.dataD = data;
         });
     };
-    HomePage.prototype.clickM = function () {
-        var clicks = document.getElementById("menu");
-        if (clicks.style.display === "none") {
-            clicks.style.display = "block";
+    HomePage.prototype.clickM = function (M) {
+        if (M.open === true) {
+            M.open = false;
         }
         else {
-            clicks.style.display = "none";
+            M.open = true;
         }
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/home/kevin/Documents/Ionic/exerciceAlgo/menuDeroulant/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      Menu déroulant\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding  >\n  <h3>Exercive menu déroulant</h3>\n  <ion-item-group *ngFor="let M of dataD">\n    <button (click)="clickM()" ion-button clear>\n      {{M.name}}\n    </button>\n    <div id="menu" >\n      <ion-item *ngFor="let C of M.categorie">{{C.name}}</ion-item>\n    </div>\n  </ion-item-group>\n</ion-content>'/*ion-inline-end:"/home/kevin/Documents/Ionic/exerciceAlgo/menuDeroulant/src/pages/home/home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"/home/kevin/Documents/Ionic/Menu-D-roulant-Ionic-3.9/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>Menu déroulant</ion-title>\n  </ion-navbar>\n  <ion-menu [content]="content">\n      <h3>Exercive menu déroulant</h3>\n\n  </ion-menu>\n</ion-header>\n\n\n<ion-content padding>\n  <h3>Exercive menu déroulant</h3>\n  <ion-item-group *ngFor="let M of dataD">\n    <button (click)="clickM(M)" ion-button clear>\n      {{M.name}}\n    </button>\n    <div id="menu" *ngIf="M.open">\n      <ion-item *ngFor="let C of M.categorie">{{C.name}}</ion-item>\n    </div>\n  </ion-item-group>\n</ion-content>'/*ion-inline-end:"/home/kevin/Documents/Ionic/Menu-D-roulant-Ionic-3.9/src/pages/home/home.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_data_service_data_service__["a" /* DataServiceProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavParams */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* App */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* App */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* MenuController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* MenuController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__providers_data_service_data_service__["a" /* DataServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_data_service_data_service__["a" /* DataServiceProvider */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _e || Object])
     ], HomePage);
     return HomePage;
+    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=home.js.map
@@ -148,11 +151,11 @@ var AppModule = /** @class */ (function () {
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_8__angular_http__["b" /* HttpModule */],
-                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* MyApp */], {}, {
+                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* MyApp */], {}, {
                     links: []
                 })
             ],
-            bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* IonicApp */]],
+            bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* IonicApp */]],
             entryComponents: [
                 __WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* MyApp */],
                 __WEBPACK_IMPORTED_MODULE_6__pages_home_home__["a" /* HomePage */]
@@ -160,7 +163,7 @@ var AppModule = /** @class */ (function () {
             providers: [
                 __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__["a" /* StatusBar */],
                 __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */],
-                { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* IonicErrorHandler */] },
+                { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* IonicErrorHandler */] },
                 __WEBPACK_IMPORTED_MODULE_7__providers_data_service_data_service__["a" /* DataServiceProvider */]
             ]
         })
@@ -199,21 +202,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var MyApp = /** @class */ (function () {
-    function MyApp(platform, statusBar, splashScreen, dataService) {
+    function MyApp(platform, menu, statusBar, splashScreen, dataService) {
         this.dataService = dataService;
         this.rootPage = __WEBPACK_IMPORTED_MODULE_5__pages_home_home__["a" /* HomePage */];
         platform.ready().then(function () {
+            menu.enable(true);
             statusBar.styleDefault();
             splashScreen.hide();
         });
     }
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/home/kevin/Documents/Ionic/exerciceAlgo/menuDeroulant/src/app/app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/home/kevin/Documents/Ionic/exerciceAlgo/menuDeroulant/src/app/app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/home/kevin/Documents/Ionic/Menu-D-roulant-Ionic-3.9/src/app/app.html"*/'<ion-nav #content [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/home/kevin/Documents/Ionic/Menu-D-roulant-Ionic-3.9/src/app/app.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* Platform */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__providers_data_service_data_service__["a" /* DataServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_data_service_data_service__["a" /* DataServiceProvider */]) === "function" && _d || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Platform */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* MenuController */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */], __WEBPACK_IMPORTED_MODULE_4__providers_data_service_data_service__["a" /* DataServiceProvider */]])
     ], MyApp);
     return MyApp;
-    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=app.component.js.map
