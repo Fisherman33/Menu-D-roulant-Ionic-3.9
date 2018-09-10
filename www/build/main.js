@@ -75,12 +75,7 @@ var HomePage = /** @class */ (function () {
         });
     };
     HomePage.prototype.clickM = function (M) {
-        if (M.open === true) {
-            M.open = false;
-        }
-        else {
-            M.open = true;
-        }
+        M.open = !M.open;
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({

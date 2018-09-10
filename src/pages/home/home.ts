@@ -27,11 +27,6 @@ export class HomePage {
     });
   }
   clickM(M) {
-    if (M.open === true) {
-      M.open = false;
-    }
-    else {
-     M.open = true;
-    }
+    M.open = !M.open
   }
 }
