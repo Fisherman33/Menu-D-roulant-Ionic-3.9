@@ -32,5 +32,31 @@
                 "page": "Archive page"
             }
         ]
+    },
+    {
+        "name": "Restautant",
+        "categorie": [
+            {
+                "name": "Mes demandes",
+                "page": "Ticket page"
+            },
+            {
+                "name": "Mes demandes archivés",
+                "page": "Archive page"
+            }
+        ]
+    },
+    {
+        "name": "cafe",
+        "categorie": [
+            {
+                "name": "Mes demandes",
+                "page": "Ticket page"
+            },
+            {
+                "name": "Mes demandes archivés",
+                "page": "Archive page"
+            }
+        ]
     }
 ]

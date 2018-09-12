@@ -56,6 +56,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 /* Service Provider */
 
 var HomePage = /** @class */ (function () {
+    // public dataC: any;
+    // public style: any;
     function HomePage(app, menu, navCtrl, dataService, params) {
         this.app = app;
         this.menu = menu;
@@ -66,6 +68,7 @@ var HomePage = /** @class */ (function () {
     }
     HomePage.prototype.ionViewDidLoad = function () {
         this.menus();
+        this.time();
     };
     /* fonction qui récupére la data du service provider */
     HomePage.prototype.menus = function () {
@@ -74,12 +77,23 @@ var HomePage = /** @class */ (function () {
             _this.dataD = data;
         });
     };
+    HomePage.prototype.time = function () {
+        var _this = this;
+        this.dataService.getDataT(this.dataTime).then(function (data) {
+            _this.dataT = data;
+            _this.dataN = data[0].timetable[0];
+            _this.dataN.forEach(function (Time) {
+                console.log(Time.subjectName);
+            });
+            console.log(_this.dataN);
+        });
+    };
     HomePage.prototype.clickM = function (M) {
         M.open = !M.open;
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/home/kevin/Documents/Ionic/Menu-D-roulant-Ionic-3.9/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>Menu déroulant</ion-title>\n  </ion-navbar>\n  <ion-menu [content]="content">\n      <h3>Exercive menu déroulant</h3>\n\n  </ion-menu>\n</ion-header>\n\n\n<ion-content padding>\n  <h3>Exercive menu déroulant</h3>\n  <ion-item-group *ngFor="let M of dataD">\n    <button (click)="clickM(M)" ion-button clear>\n      {{M.name}}\n    </button>\n    <div id="menu" *ngIf="M.open">\n      <ion-item *ngFor="let C of M.categorie">{{C.name}}</ion-item>\n    </div>\n  </ion-item-group>\n</ion-content>'/*ion-inline-end:"/home/kevin/Documents/Ionic/Menu-D-roulant-Ionic-3.9/src/pages/home/home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"/home/kevin/Documents/Ionic/Menu-D-roulant-Ionic-3.9/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>Menu déroulant</ion-title>\n  </ion-navbar>\n  <ion-menu [content]="content">\n      <h3>Exercive menu déroulant</h3>\n\n  </ion-menu>\n</ion-header>\n\n\n<ion-content padding>\n  <h3>Exercive menu déroulant</h3>\n  <ion-item-group *ngFor="let M of dataD">\n    <button (click)="clickM(M)" ion-button clear>\n      {{M.name}}\n    </button>\n    <div id="menu" *ngIf="M.open">\n      <ion-item *ngFor="let C of M.categorie">{{C.name}}</ion-item>\n    </div>\n  </ion-item-group>\n<h4>Tableau Json</h4>\n  <ion-grid>\n    <ion-row>\n      <ion-col *ngFor="let T of dataN" col-3>\n       <p> {{T.subjectName}} </p>\n        <p>{{T.startTime}}</p> \n         <p>{{T.endTime}}</p>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>'/*ion-inline-end:"/home/kevin/Documents/Ionic/Menu-D-roulant-Ionic-3.9/src/pages/home/home.html"*/
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* App */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* App */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* MenuController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* MenuController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__providers_data_service_data_service__["a" /* DataServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_data_service_data_service__["a" /* DataServiceProvider */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _e || Object])
     ], HomePage);
@@ -248,6 +262,18 @@ var DataServiceProvider = /** @class */ (function () {
         var _this = this;
         return new Promise(function (resolve) {
             var url = "././../assets/data/listMenu.json";
+            _this.http.get(url).map(function (res) { return res.json(); }).subscribe(function (data) {
+                console.log(data);
+                resolve(data);
+            }, function (err) {
+                console.log('erreur');
+            });
+        });
+    };
+    DataServiceProvider.prototype.getDataT = function (dataTime) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            var url = "././../assets/data/listTime.json";
             _this.http.get(url).map(function (res) { return res.json(); }).subscribe(function (data) {
                 console.log(data);
                 resolve(data);

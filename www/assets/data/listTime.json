@@ -1,0 +1,30 @@
+[
+    {
+        "response": "OK",
+        "res": true,
+        "timetable": [
+            [
+                {
+                    "startTime": "08:30:00",
+                    "endTime": "08:55:00",
+                    "subjectName": "English"
+                },
+                {
+                    "startTime": "09:00:00",
+                    "endTime": "09:55:00",
+                    "subjectName": "French"
+                },
+                {
+                    "startTime": "10:00:00",
+                    "endTime": "10:55:00",
+                    "subjectName": "Spanish"
+                },
+                {
+                    "startTime": "12:00:00",
+                    "endTime": "12:45:00",
+                    "subjectName": "Lunch break"
+                }
+            ]
+        ]
+    }
+]

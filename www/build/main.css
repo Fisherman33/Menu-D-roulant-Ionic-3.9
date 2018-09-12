@@ -25677,3 +25677,23 @@ ion-navbar.toolbar {
   min-height: calc(46px + constant(safe-area-inset-bottom));
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
+
+page-home {
+  text-align: center;
+}
+
+page-home ion-grid {
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+  border: solid 2px grey;
+}
+
+page-home ion-col {
+  border: solid 2px grey;
+}
+
+page-home p {
+  border: solid 2px grey;
+  text-align: center;
+}

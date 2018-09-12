@@ -19,4 +19,14 @@
       <ion-item *ngFor="let C of M.categorie">{{C.name}}</ion-item>
     </div>
   </ion-item-group>
+<h4>Tableau Json</h4>
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let T of dataN" col-3>
+       <p> {{T.subjectName}} </p>
+        <p>{{T.startTime}}</p> 
+         <p>{{T.endTime}}</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
