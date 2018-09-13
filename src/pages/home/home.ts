@@ -12,10 +12,9 @@ export class HomePage {
   public dataM: any;
   public dataD: any;
   public dataTime: any;
+  public dataH: any;
   public dataT: any;
   public dataN: any;
-  // public dataC: any;
-  // public style: any;
 
   constructor(public app: App, public menu: MenuController, public navCtrl: NavController, public dataService: DataServiceProvider, public params: NavParams) {
     menu.enable(true)
@@ -33,10 +32,9 @@ export class HomePage {
   time() {
     this.dataService.getDataT(this.dataTime).then((data) => {
       this.dataT = data
+      this.dataH = data[0].header[0]
       this.dataN = data[0].timetable[0]
-      this.dataN.forEach(Time => {
-        console.log(Time.subjectName)
-      });
+      console.log(this.dataH)
       console.log(this.dataN)
     });
   }

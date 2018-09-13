@@ -3,7 +3,7 @@
     <ion-title>Menu déroulant</ion-title>
   </ion-navbar>
   <ion-menu [content]="content">
-      <h3>Exercive menu déroulant</h3>
+    <h3>Exercive menu déroulant</h3>
 
   </ion-menu>
 </ion-header>
@@ -19,14 +19,30 @@
       <ion-item *ngFor="let C of M.categorie">{{C.name}}</ion-item>
     </div>
   </ion-item-group>
-<h4>Tableau Json</h4>
+  <h4>Tableau Json pour RDV</h4>
   <ion-grid>
-    <ion-row>
-      <ion-col *ngFor="let T of dataN" col-3>
-       <p> {{T.subjectName}} </p>
-        <p>{{T.startTime}}</p> 
-         <p>{{T.endTime}}</p>
+    <ion-row *ngFor="let H of dataH">
+      <ion-col>
+        <p> {{H.subjectName}} </p>
       </ion-col>
+      <ion-col>
+        <p>{{H.startTime}}</p>
+      </ion-col>
+      <ion-col>
+        <p>{{H.endTime}}</p>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngFor="let T of dataN">
+      <ion-col>
+        <p> {{T.subjectName}} </p>
+      </ion-col>
+      <ion-col>
+        <p>{{T.startTime}}</p>
+      </ion-col>
+      <ion-col>
+        <p>{{T.endTime}}</p>
+      </ion-col>
+
     </ion-row>
   </ion-grid>
 </ion-content>
